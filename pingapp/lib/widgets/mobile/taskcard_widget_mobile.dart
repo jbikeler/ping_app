@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class TaskCard extends StatelessWidget {
+class TaskCardMobile extends StatelessWidget {
 
   String title = "Task Title";
 
-  TaskCard(this.title);
+  TaskCardMobile(this.title);
 
   @override
   Widget build(BuildContext context) {

@@ -5,17 +5,25 @@ import 'package:pingapp/screens/desktop/home_screen_desktop.dart';
 import 'package:pingapp/screens/mobile/home_screen_mobile.dart';
 
 void main() async {
+
+  Widget platformHome = const HomePageMobile();
+
   if (defaultTargetPlatform == TargetPlatform.windows) {
     WidgetsFlutterBinding.ensureInitialized();
     await windowManager.ensureInitialized();
     WindowManager.instance.setMinimumSize(const Size(380, 510));
+    platformHome = const HomePageDesktop();
   }
 
-  runApp(const MyApp());
+
+  runApp(MyApp(platformHome)); //TODO 0: add provider wrappers
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+
+  Widget pingHome;
+
+  MyApp(this.pingHome);
 
   // This widget is the root of your application.
   @override
@@ -23,8 +31,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        '/': (context) => HomePageDesktop(),
-        '/second': (context) => MyHomePage(),
+        '/': (context) => pingHome,
+        '/second': (context) => const HomePageMobile(),
       },
     );
   }

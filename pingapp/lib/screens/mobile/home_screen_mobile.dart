@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pingapp/widgets/taskcard_widget.dart';
+import 'package:pingapp/widgets/mobile/taskcard_widget_mobile.dart';
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+class HomePageMobile extends StatelessWidget {
+  const HomePageMobile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,10 +10,10 @@ class MyHomePage extends StatelessWidget {
       backgroundColor: Color.fromARGB(255, 25, 23, 43),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+          padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
           child: Column(
             children: [
-              Container(
+              const SizedBox(
                 height: 200.0,
                 child: Center(
                   child: Text(
@@ -26,15 +26,15 @@ class MyHomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              TaskCard("Task Mobile"),
+              TaskCardMobile("Task Mobile"),
             ],
           ),
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Color.fromARGB(255, 25, 23, 43),
-        shape: CircularNotchedRectangle(),
-        child: Container(
+        color: const Color.fromARGB(255, 25, 23, 43),
+        shape: const CircularNotchedRectangle(),
+        child: SizedBox(
           height: 60.0,
           child: IconButton(
             onPressed: () {},
@@ -45,12 +45,12 @@ class MyHomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
         onPressed: () => {
                 print('action button')
               },
-        backgroundColor: Color.fromARGB(255, 33, 106, 240),
+        backgroundColor: const Color.fromARGB(255, 33, 106, 240),
         elevation: 0,
+        child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );

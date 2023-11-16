@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pingapp/widgets/taskcard_widget.dart';
+import 'package:pingapp/widgets/desktop/taskcard_widget_desktop.dart';
 
 class HomePageDesktop extends StatelessWidget {
   const HomePageDesktop({super.key});
@@ -27,7 +27,7 @@ class HomePageDesktop extends StatelessWidget {
                   ),
                 ),
               ),
-              TaskCard("Task Desktop"),
+              TaskCardDesktop("Task Desktop"),
               Expanded(child: Container()),
               Container(
                 height: 50.0,
