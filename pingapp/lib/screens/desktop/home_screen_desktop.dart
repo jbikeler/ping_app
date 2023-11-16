@@ -27,7 +27,7 @@ class HomePageDesktop extends StatelessWidget {
                   ),
                 ),
               ),
-              TaskCardDesktop("Task Desktop"),
+              const TaskCardDesktop("Task Desktop"),
               Expanded(child: Container()),
               Container(
                 height: 50.0,
@@ -82,7 +82,7 @@ class HomePageDesktop extends StatelessWidget {
       bottomNavigationBar: BottomAppBar(
         color: Color.fromARGB(255, 25, 23, 43),
         shape: CircularNotchedRectangle(),
-        child: Container(
+        child: SizedBox(
           height: 60.0,
           child: IconButton(
             onPressed: () {},

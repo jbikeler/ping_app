@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class TaskCardDesktop extends StatelessWidget {
 
-  String title = "Task Title";
+  final String title;
 
-  TaskCardDesktop(this.title);
+  const TaskCardDesktop(this.title);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class TaskCardDesktop extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    "$title",
+                    title,
                     textAlign: TextAlign.left,
                     style: const TextStyle(
                       color: Colors.white,

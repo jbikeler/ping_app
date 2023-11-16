@@ -21,9 +21,9 @@ void main() async {
 
 class MyApp extends StatelessWidget {
 
-  Widget pingHome;
+  final Widget pingHome;
 
-  MyApp(this.pingHome);
+  const MyApp(this.pingHome);
 
   // This widget is the root of your application.
   @override

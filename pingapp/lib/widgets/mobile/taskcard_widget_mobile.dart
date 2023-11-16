@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class TaskCardMobile extends StatelessWidget {
 
-  String title = "Task Title";
+  final String title;
 
   TaskCardMobile(this.title);
 
