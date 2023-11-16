@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:pingapp/providers/tasklist_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:pingapp/screens/desktop/home_screen_desktop.dart';
 import 'package:pingapp/screens/mobile/home_screen_mobile.dart';
@@ -16,7 +18,7 @@ void main() async {
   }
 
 
-  runApp(MyApp(platformHome)); //TODO 0: add provider wrappers
+  runApp(MyApp(platformHome));
 }
 
 class MyApp extends StatelessWidget {
@@ -28,12 +30,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: '/',
-      routes: {
-        '/': (context) => pingHome,
-        '/second': (context) => const HomePageMobile(),
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => TaskListProvider())
+      ],
+      child: MaterialApp(
+        initialRoute: '/',
+        routes: {
+          '/': (context) => pingHome,
+          '/second': (context) => const HomePageMobile(),
+        },
+      ),
     );
   }
 }

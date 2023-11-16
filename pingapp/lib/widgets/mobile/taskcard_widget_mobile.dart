@@ -4,7 +4,7 @@ class TaskCardMobile extends StatelessWidget {
 
   final String title;
 
-  TaskCardMobile(this.title);
+  const TaskCardMobile(this.title);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class TaskCardMobile extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      "$title",
+                      title,
                       textAlign: TextAlign.left,
                       style: const TextStyle(
                         color: Colors.white,

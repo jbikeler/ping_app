@@ -5,5 +5,5 @@ class Task{
   double repeatInterval = 0;
   String alarmSound = "";
 
-  Task(this.title, this.dueDate, this.repeatInterval, this.alarmSound);
+  Task(this.title); // For testing, only title. Add later: this.dueDate, this.repeatInterval, this.alarmSound 
 }

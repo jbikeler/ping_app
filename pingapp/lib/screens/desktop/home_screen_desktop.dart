@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:pingapp/models/task_model.dart';
 import 'package:pingapp/widgets/desktop/taskcard_widget_desktop.dart';
+import 'package:pingapp/providers/tasklist_provider.dart';
+import 'package:provider/provider.dart';
 
 class HomePageDesktop extends StatelessWidget {
   const HomePageDesktop({super.key});
 
+  void addButtonClicked(context){
+    context.read<TaskListProvider>().addToList('New Task');
+    print('Add Button - Desktop');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 25, 23, 43),
+      backgroundColor: const Color.fromARGB(255, 25, 23, 43),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
@@ -27,8 +35,14 @@ class HomePageDesktop extends StatelessWidget {
                   ),
                 ),
               ),
-              const TaskCardDesktop("Task Desktop"),
-              Expanded(child: Container()),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: context.read<TaskListProvider>().tasks.length,
+                  itemBuilder: (context, index) {
+                    return TaskCardDesktop(context.read<TaskListProvider>().tasks[index].title);
+                  }
+                ),
+              ), //TODO 8: BROKEN Make a ListVeiw builder widget that watches task list provider.
               Container(
                 height: 50.0,
                 constraints: const BoxConstraints(minWidth: 0, maxWidth: 600),
@@ -54,7 +68,7 @@ class HomePageDesktop extends StatelessWidget {
                         height: double.infinity,
                         child: FilledButton(
                           onPressed: () => {
-                            print(MediaQuery.of(context).size.width)
+                            context.read<TaskListProvider>().addToList('New Task')
                           },
                           style: FilledButton.styleFrom(
                             backgroundColor: Colors.blue,
@@ -80,8 +94,8 @@ class HomePageDesktop extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Color.fromARGB(255, 25, 23, 43),
-        shape: CircularNotchedRectangle(),
+        color: const Color.fromARGB(255, 25, 23, 43),
+        shape: const CircularNotchedRectangle(),
         child: SizedBox(
           height: 60.0,
           child: IconButton(
@@ -94,4 +108,5 @@ class HomePageDesktop extends StatelessWidget {
       ),
     );
   }
+
 }
