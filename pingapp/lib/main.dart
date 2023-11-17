@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:pingapp/screens/desktop/home_screen_desktop.dart';
 import 'package:pingapp/screens/mobile/home_screen_mobile.dart';
+
 
 void main() async {
 
@@ -16,7 +18,11 @@ void main() async {
   }
 
 
-  runApp(MyApp(platformHome));
+  runApp(
+    ProviderScope(
+      child: MyApp(platformHome),
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -37,5 +43,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
