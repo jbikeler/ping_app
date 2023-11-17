@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:pingapp/providers/tasklist_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:pingapp/screens/desktop/home_screen_desktop.dart';
 import 'package:pingapp/screens/mobile/home_screen_mobile.dart';
@@ -30,17 +28,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => TaskListProvider())
-      ],
-      child: MaterialApp(
-        initialRoute: '/',
-        routes: {
-          '/': (context) => pingHome,
-          '/second': (context) => const HomePageMobile(),
-        },
-      ),
+    return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (context) => pingHome,
+        '/second': (context) => const HomePageMobile(),
+      },
     );
   }
 }
+
+

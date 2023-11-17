@@ -1,16 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pingapp/models/task_model.dart';
 import 'package:pingapp/widgets/desktop/taskcard_widget_desktop.dart';
-import 'package:pingapp/providers/tasklist_provider.dart';
-import 'package:provider/provider.dart';
 
 class HomePageDesktop extends StatelessWidget {
   const HomePageDesktop({super.key});
-
-  void addButtonClicked(context){
-    context.read<TaskListProvider>().addToList('New Task');
-    print('Add Button - Desktop');
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +29,12 @@ class HomePageDesktop extends StatelessWidget {
               ),
               Expanded(
                 child: ListView.builder(
-                  itemCount: context.read<TaskListProvider>().tasks.length,
+                  itemCount: 3,
                   itemBuilder: (context, index) {
-                    return TaskCardDesktop(context.read<TaskListProvider>().tasks[index].title);
+                    return TaskCardDesktop("New Card");
                   }
                 ),
-              ), //TODO 8: BROKEN Make a ListVeiw builder widget that watches task list provider.
+              ),
               Container(
                 height: 50.0,
                 constraints: const BoxConstraints(minWidth: 0, maxWidth: 600),
@@ -68,7 +60,7 @@ class HomePageDesktop extends StatelessWidget {
                         height: double.infinity,
                         child: FilledButton(
                           onPressed: () => {
-                            context.read<TaskListProvider>().addToList('New Task')
+                            print('Add Task - Desktop')
                           },
                           style: FilledButton.styleFrom(
                             backgroundColor: Colors.blue,
