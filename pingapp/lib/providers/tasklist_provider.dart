@@ -17,7 +17,7 @@ class Tasks extends _$Tasks {
 
     void deleteTask(int index) {
       List<Task> newstate = [...state];
-      newstate.removeAt(index); //TODO: make new state object https://riverpod.dev/docs/providers/notifier_provider https://github.com/rrousselGit/riverpod/blob/master/examples/todos/lib/todo.dart
+      newstate.removeAt(index);
       state = newstate;
     }
 
