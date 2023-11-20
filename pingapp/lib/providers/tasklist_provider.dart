@@ -23,7 +23,7 @@ class Tasks extends _$Tasks {
 
     void addNewTask(String title) {
       List<Task> newstate = [...state];
-      newstate.add(Task(title + state.length.toString()));
+      newstate.add(Task(title));
       state = newstate;
     }
 }

@@ -14,7 +14,7 @@ void main() async {
     WidgetsFlutterBinding.ensureInitialized();
     await windowManager.ensureInitialized();
     WindowManager.instance.setMinimumSize(const Size(380, 510));
-    platformHome = const HomePageDesktop();
+    platformHome = HomePageDesktop();
   }
 
 

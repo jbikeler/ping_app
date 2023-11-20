@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pingapp/providers/tasklist_provider.dart';
 import 'package:pingapp/widgets/desktop/taskcard_widget_desktop.dart';
 
 class HomePageDesktop extends StatelessWidget {
-  const HomePageDesktop({super.key});
+  HomePageDesktop({super.key});
+
+  final taskInputCon = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,10 @@ class HomePageDesktop extends StatelessWidget {
               ),
               const Expanded(
                 child: TaskView()
-                ),
+              ),
+              const Divider(
+                height: 10.0,
+              ),
               Container(
                 height: 50.0,
                 constraints: const BoxConstraints(minWidth: 0, maxWidth: 600),
@@ -49,30 +55,15 @@ class HomePageDesktop extends StatelessWidget {
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           color: Color.fromARGB(255, 202, 203, 232),
                         ),
-                      ),
-                    ),
-                    Expanded( //Expanded>SizedBox with height:infinity to make button fill the Row height
-                      flex: 1,
-                      child: SizedBox(
-                        height: double.infinity,
-                        child: Consumer(builder: (context, ref, child) { return FilledButton(
-                          onPressed: () => {
-                            ref.read(tasksProvider.notifier).addNewTask("Card")
-                          },
-                          style: FilledButton.styleFrom(
-                            backgroundColor: Colors.blue,
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.horizontal(
-                                left: Radius.zero,
-                                right: Radius.circular(10)
-                              ),
-                            )  
-                          ),
-                          child: const Icon(
-                            Icons.add,
-                            color: Colors.white,
-                          )
-                        ); },),
+                        child: Consumer(builder: (context, ref, child) {
+                          return TextField(
+                            controller: taskInputCon,
+                            onSubmitted: (String str) {
+                              taskInputCon.clear();
+                              ref.read(tasksProvider.notifier).addNewTask(str);
+                            },
+                          );
+                        },),
                       ),
                     ),
                   ],
@@ -109,7 +100,6 @@ class TaskView extends ConsumerWidget {
     return ListView.separated(
       itemCount: ref.watch(tasksProvider).length,
       itemBuilder: (BuildContext context, int index) {
-        print(index);
         return TaskCardDesktop(ref.watch(tasksProvider)[index].title, index);
       },
       separatorBuilder: (BuildContext context, int index) => const Divider(
