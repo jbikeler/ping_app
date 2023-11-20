@@ -4,6 +4,7 @@ class TaskCardMobile extends StatelessWidget {
 
   final String title;
 
+
   const TaskCardMobile(this.title);
 
   @override

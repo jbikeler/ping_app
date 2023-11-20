@@ -43,3 +43,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+//dart run build_runner watch

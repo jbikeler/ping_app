@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pingapp/providers/tasklist_provider.dart';
 import 'package:pingapp/widgets/desktop/taskcard_widget_desktop.dart';
 
 class HomePageDesktop extends StatelessWidget {
@@ -27,14 +29,9 @@ class HomePageDesktop extends StatelessWidget {
                   ),
                 ),
               ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: 3,
-                  itemBuilder: (context, index) {
-                    return TaskCardDesktop("New Card");
-                  }
+              const Expanded(
+                child: TaskView()
                 ),
-              ),
               Container(
                 height: 50.0,
                 constraints: const BoxConstraints(minWidth: 0, maxWidth: 600),
@@ -58,9 +55,9 @@ class HomePageDesktop extends StatelessWidget {
                       flex: 1,
                       child: SizedBox(
                         height: double.infinity,
-                        child: FilledButton(
+                        child: Consumer(builder: (context, ref, child) { return FilledButton(
                           onPressed: () => {
-                            print('Add Task - Desktop')
+                            ref.read(tasksProvider.notifier).addNewTask("Card")
                           },
                           style: FilledButton.styleFrom(
                             backgroundColor: Colors.blue,
@@ -75,7 +72,7 @@ class HomePageDesktop extends StatelessWidget {
                             Icons.add,
                             color: Colors.white,
                           )
-                        ),
+                        ); },),
                       ),
                     ),
                   ],
@@ -101,4 +98,23 @@ class HomePageDesktop extends StatelessWidget {
     );
   }
 
+}
+
+class TaskView extends ConsumerWidget {
+  const TaskView({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    // use ref to listen to a provider
+    return ListView.separated(
+      itemCount: ref.watch(tasksProvider).length,
+      itemBuilder: (BuildContext context, int index) {
+        print(index);
+        return TaskCardDesktop(ref.watch(tasksProvider)[index].title, index);
+      },
+      separatorBuilder: (BuildContext context, int index) => const Divider(
+        height: 8.0,
+      ),
+    );
+  }
 }

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pingapp/providers/tasklist_provider.dart';
 
 class TaskCardDesktop extends StatelessWidget {
 
   final String title;
+  final int taskIndex;
 
-  const TaskCardDesktop(this.title);
+  const TaskCardDesktop(this.title, this.taskIndex);
 
   @override
   Widget build(BuildContext context) {
@@ -55,18 +58,30 @@ class TaskCardDesktop extends StatelessWidget {
             flex: 1,
             child: SizedBox(
               height: double.infinity,
-              child: TextButton(
-                onPressed:  () => {
-                  print('delete button')
-                },
-                child: const Icon(
-                  Icons.delete,
-                  color: Colors.white,
-                ),
-              ),
+              child: DeleteBtn(taskIndex)
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class DeleteBtn extends ConsumerWidget {
+
+  final int taskIndex;
+  DeleteBtn(this.taskIndex);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    Tasks tasklist = ref.watch(tasksProvider.notifier);
+    return TextButton(
+      onPressed:  () => {
+        tasklist.deleteTask(taskIndex),
+      },
+      child: const Icon(
+        Icons.delete,
+        color: Colors.white,
       ),
     );
   }
