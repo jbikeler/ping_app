@@ -1,1 +1,0 @@
-//TODO Save list of tasks on local device
