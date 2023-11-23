@@ -10,10 +10,11 @@ class IsarService {
   }
 
   //Set up the save functions for each of the databases
-  Future<void> saveSavedTasks(SavedTasks newSavedTasks) async {
+  Future<void> saveTasks(SavedTasks newSavedTasks) async { //bad name scheme, but saveTasks will save Isar SavedTasks Object
     final isar = await db;
     isar.writeTxnSync<int>(() => isar.savedTasks.putSync(newSavedTasks));
   }
+  
   //Set up the DB at the beginning of the app start 
   Future<Isar> openDB() async {
     if (Isar.instanceNames.isEmpty){
