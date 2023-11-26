@@ -38,9 +38,10 @@ dependencies:
   window_manager:
   flutter_riverpod:
   riverpod_annotation:
-  isar:
-  isar_flutter_libs:
   path_provider:
+  drift:
+  sqlite3_flutter_libs:
+  path:
 
 dev_dependencies:
   flutter_test:
@@ -56,7 +57,7 @@ dev_dependencies:
   custom_lint:
   riverpod_generator:
   riverpod_lint:
-  isar_generator:
+  drift_dev:
 
 
 # For information on the generic Dart part of this file, see the
